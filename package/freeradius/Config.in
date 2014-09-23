@@ -1,0 +1,15 @@
+config BR2_PACKAGE_FREERADIUS
+	bool "freeradius"
+	select BR2_PACKAGE_OPENSSL
+	select BR2_PACKAGE_LIBTALLOC
+	depends on BR2_TOOLCHAIN_HAS_THREADS # libusb
+	depends on BR2_USE_WCHAR
+	depends on BR2_USE_MMU # fork()
+	help
+	  freeradius foo
+
+	  http://freeradius.org
+
+comment "freeradius needs a toolchain w/ threads, wchar"
+	depends on !BR2_TOOLCHAIN_HAS_THREADS || !BR2_USE_WCHAR
+	depends on BR2_USE_MMU

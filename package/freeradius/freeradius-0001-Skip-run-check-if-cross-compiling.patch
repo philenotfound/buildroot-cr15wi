@@ -1,0 +1,30 @@
+From ccdde2fa31d78e197bfbe8a6c8d1be0090d3ed49 Mon Sep 17 00:00:00 2001
+From: philenotfound <phil.eichinger@gmail.com>
+Date: Thu, 25 Sep 2014 13:37:30 +0200
+Subject: [PATCH] Skip run-check if cross-compiling
+
+---
+ configure |    7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/configure b/configure
+index 77c7cf5..5f88e2f 100755
+--- a/configure
++++ b/configure
+@@ -21540,10 +21540,9 @@ rm -f conftest*
+         { $as_echo "$as_me:${as_lineno-$LINENO}: checking OpenSSL library and header version consistency" >&5
+ $as_echo_n "checking OpenSSL library and header version consistency... " >&6; }
+   if test "$cross_compiling" = yes; then :
+-  { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+-$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+-as_fn_error $? "cannot run test program while cross compiling
+-See \`config.log' for more details" "$LINENO" 5; }
++  {
++    $as_echo "skipped because we are cross-compiling" >&6
++  }
+ else
+   cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+-- 
+1.7.10.4
+

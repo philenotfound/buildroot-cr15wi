@@ -11,7 +11,10 @@ FREERADIUS_LICENSE = GPLv2
 FREERADIUS_LICENSE_FILES = LICENSE
 FREERADIUS_DEPENDENCIES = openssl libtalloc host-automake host-autoconf host-libtool host-pkgconf host-m4
 # freeradius doesn't respect DESTDIR, it uses a variable named R instead
-FREERADIUS_MAKE_ENV = R=$(STAGING_DIR)
+#FREERADIUS_TMP_INSTALL_DIR = `mktemp -d`
+#FREERADIUS_MAKE_ENV = R=$(FREERADIUS_TMP_INSTALL_DIR)
+FREERADIUS_MAKE_ENV = R=$(TARGET_DIR)
+
 
 FREERADIUS_CONF_OPT = --with-raddbdir=/etc/freeradius \
 --without-edir \
@@ -46,5 +49,11 @@ FREERADIUS_CONF_OPT = --with-raddbdir=/etc/freeradius \
 --without-rlm_ldap \
 --without-rlm_sql_mysql \
 --without-rlm_sql_postgresql
+
+define FREERADIUS_POST_INSTALL_FIXUP
+	echo $(FREERADIUS_TMP_INSTALL_DIR)
+endef
+
+#FREERADIUS_POST_INSTALL_TARGET_HOOKS += FREERADIUS_POST_INSTALL_FIXUP
 
 $(eval $(autotools-package))

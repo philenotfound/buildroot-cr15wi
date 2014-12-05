@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# Start the hostapd....
+#
+
+case "$1" in
+  start)
+        echo "Starting hostapd..."
+        /usr/sbin/hostapd -B /etc/hostapd/hostapd.conf
+        ;;
+  stop)
+        echo -n "Stopping hostapd..."
+        killall hostapd
+        echo
+        ;;
+  restart|reload)
+        "$0" stop
+        "$0" start
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
+
+exit $?

@@ -1,0 +1,31 @@
+#!/bin/sh
+#
+# Start NAT....
+#
+IPTABLES=/usr/sbin/iptables
+IPV4_FORWARD=/proc/sys/net/ipv4/ip_forward
+
+case "$1" in
+  start)
+        echo "Starting NAT..."
+	echo 1 > $IPV4_FORWARD
+	$IPTABLES -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+	$IPTABLES -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+	$IPTABLES -A FORWARD -i wlan0 -o eth0 -j ACCEPT
+        ;;
+  stop)
+        echo -n "Stopping NAT..."
+	$IPTABLES -F
+	echo 0 > $IPV4_FORWARD
+        echo
+        ;;
+  restart|reload)
+        "$0" stop
+        "$0" start
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
+
+exit $?

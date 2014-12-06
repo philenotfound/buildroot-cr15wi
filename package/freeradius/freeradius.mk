@@ -34,7 +34,7 @@ FREERADIUS_CONF_OPT = --with-raddbdir=/etc/freeradius \
 --without-rlm_pam \
 --without-rlm_perl \
 --without-rlm_python \
---without-rlm_radutmp \
+--with-rlm_radutmp \
 --without-rlm_smb \
 --with-rlm_sql \
 --with-rlm_sqlcounter \
@@ -45,7 +45,7 @@ FREERADIUS_CONF_OPT = --with-raddbdir=/etc/freeradius \
 --without-rlm_sql_sybase \
 --without-rlm_sql_unixodbc \
 --without-rlm_sql_log \
---without-rlm_unix \
+--with-rlm_unix \
 --without-rlm_ldap \
 --without-rlm_sql_mysql \
 --without-rlm_sql_postgresql

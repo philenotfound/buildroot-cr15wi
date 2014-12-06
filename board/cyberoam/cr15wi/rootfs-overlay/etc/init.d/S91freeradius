@@ -1,0 +1,26 @@
+#!/bin/sh
+#
+# freeradius 
+#
+BOOTSTRAP=/etc/freeradius/certs/bootstrap
+
+case "$1" in
+  start)
+        echo "Starting freeradius..."
+	$BOOTSTRAP
+	/usr/sbin/radiusd
+        ;;
+  stop)
+        echo -n "Stopping freeradius..."
+	killall radiusd
+        ;;
+  restart|reload)
+        "$0" stop
+        "$0" start
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
+
+exit $?

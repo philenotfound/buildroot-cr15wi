@@ -1,0 +1,47 @@
+#!/bin/sh
+#
+# pepper      This shell script takes care of starting and stopping
+#             pepper.
+#
+# TODO: forwarding only in start
+IPV4_FORWARD=/proc/sys/net/ipv4/ip_forward
+PEPPER_BIN=/usr/sbin/pepper
+PEPPER_CONF=/etc/pepper.conf
+
+if [ ! -f $PEPPER_BIN ]; then 
+echo "$PEPPER_BIN not found, exiting.."
+exit 0
+fi
+
+if [ ! -f $PEPPER_CONF ]; then
+echo "$PEPPER_CONF not found, exiting.."
+exit 0
+fi
+
+case "$1" in
+  start)
+        echo "Starting pepperspot..."
+	# Enable routing of packets: WARNING!!!
+	# Users should enable this explicitly
+	# echo 1 > /proc/sys/net/ipv4/ip_forward
+        echo 1 > $IPV4_FORWARD
+        /etc/pepper.iptables
+	$PEPPER_BIN &
+	return $?
+        ;;
+  stop)
+        echo -n "Stopping pepperspot..."
+        echo 0 > $IPV4_FORWARD
+	iptables -F
+	killall $PEPPER_BIN
+        ;;
+  restart|reload)
+        "$0" stop
+        "$0" start
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
+
+exit $?

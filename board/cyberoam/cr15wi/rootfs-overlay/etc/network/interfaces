@@ -3,3 +3,8 @@ iface lo inet loopback
 
 auto eth0
 iface eth0 inet dhcp
+
+iface eth0 inet6 static
+  address 2001:470:7433::20d:48ff:fe37:24d6
+  netmask 64
+  up route -A inet6 add default gw 2001:470:7433::1 dev eth0

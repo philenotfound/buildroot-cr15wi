@@ -26,14 +26,16 @@ case "$1" in
 	# echo 1 > /proc/sys/net/ipv4/ip_forward
         echo 1 > $IPV4_FORWARD
         /etc/pepper.iptables
-	$PEPPER_BIN &
+        /etc/pepper.ip6tables
+	$PEPPER_BIN &> /dev/null &
 	return $?
         ;;
   stop)
-        echo -n "Stopping pepperspot..."
+        echo "Stopping pepperspot..."
         echo 0 > $IPV4_FORWARD
 	iptables -F
-	killall $PEPPER_BIN
+	ip6tables -F
+	kill -15 `cat /var/run/pepper.pid`
         ;;
   restart|reload)
         "$0" stop

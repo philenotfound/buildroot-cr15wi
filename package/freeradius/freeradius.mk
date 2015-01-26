@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-FREERADIUS_VERSION = 2.2.5
+FREERADIUS_VERSION = 2.2.6
 FREERADIUS_SOURCE = freeradius-server-$(FREERADIUS_VERSION).tar.bz2
 FREERADIUS_SITE = ftp://ftp.freeradius.org/pub/freeradius/
 FREERADIUS_LICENSE = GPLv2

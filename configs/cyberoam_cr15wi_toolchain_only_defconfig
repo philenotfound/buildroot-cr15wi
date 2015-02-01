@@ -1,5 +1,5 @@
-BR2_x86_c3=y
-BR2_HOST_DIR="/opt/i586-cyberoam_cr15wi-linux-gnu"
+BR2_x86_c32=y
+BR2_HOST_DIR="$(TOPDIR)/i686-cyberoam_cr15wi-linux-gnu"
 BR2_TOOLCHAIN_BUILDROOT_VENDOR="cyberoam_cr15wi"
 BR2_TOOLCHAIN_BUILDROOT_GLIBC=y
 BR2_TOOLCHAIN_BUILDROOT_CXX=y

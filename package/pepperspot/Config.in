@@ -3,6 +3,7 @@ config BR2_PACKAGE_PEPPERSPOT
 	depends on BR2_TOOLCHAIN_HAS_THREADS # libusb
 	depends on BR2_USE_WCHAR
 	depends on BR2_USE_MMU # fork()
+	depends on BR2_FREERADIUS
 	help
 	  pepperspot foo
 

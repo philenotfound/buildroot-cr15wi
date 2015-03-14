@@ -401,6 +401,10 @@ if ($result == 5) {
   <h1 style=\"text-align: center;\">PepperSpot Login</h1>";
 }
 
+#print logo
+print "
+<div align="center"><img src="Logo.png" alt="logo"></div>";
+
 if ($result == 2 || $result == 5) {
   print "
   <form name=\"form1\" method=\"post\" action=\"$loginpath\">

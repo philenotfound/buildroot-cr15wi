@@ -388,6 +388,10 @@ print "Content-type: text/html\n\n
 #    print $key, ' = ', $ENV{$key}, "<br>\n";
 #}
 
+#Print custom Logo
+print "
+<div align=\"center\"><img src=\"Logo.png\" alt=\"Logo\"></div>";
+
 if ($result == 2) {
     print "
   <h1 style=\"text-align: center;\">PepperSpot Login Failed</h1>";
@@ -400,10 +404,6 @@ if ($result == 5) {
     print "
   <h1 style=\"text-align: center;\">PepperSpot Login</h1>";
 }
-
-#print logo
-print "
-<div align="center"><img src="Logo.png" alt="logo"></div>";
 
 if ($result == 2 || $result == 5) {
   print "
